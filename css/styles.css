@@ -5,6 +5,11 @@ nav {
     background-color: #333;
     color: #fff;
     padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    z-index: 999;
   }
   
   .logo {
@@ -29,14 +34,22 @@ nav {
     color: #fff;
     text-decoration: none;
   }
+  .main-container{
+    padding-top: 60px; 
+    width: 100%;
+    margin: 0 auto; 
+    padding-bottom: 100px;
+  }
   .sidebar {
-    background-color: #f2f2f2;
-    width: 200px;
-    height: 100%;
-    position: fixed;
+    /* position: fixed;  */
+    
     left: 0;
-    top: 0;
-    overflow-y: auto;
+    width: 200px;
+    height: 100%; 
+    background-color: #f1f1f1;
+    float: left;
+    
+    
   }
   
   .sidebar ul {
@@ -56,4 +69,16 @@ nav {
   
   .sidebar li:hover {
     background-color: #ddd;
+  }
+  #movie-details img {
+    width: 180px;
+    height: 180px;
+    
+  }
+  #movie-details {
+    columns: 3;
+    padding-left: 10px;
+  }
+  #movie-details div{
+    padding-top: 30px;
   }

@@ -48,7 +48,7 @@ function viewMovieDetails (data) {
         const movieShowtime = document.createElement('p');
         movieShowtime.textContent = `Showtime: ${data.showtime}.`
         movieCard.appendChild(movieShowtime);
-        const availableTickets = document.createElement('p')
+        let availableTickets = document.createElement('p')
         availableTickets.textContent = 'Available Tickets: ' + (parseInt(data.capacity - data.tickets_sold));
         movieCard.appendChild(availableTickets)
         const buyTicketButton = document.createElement('button');
