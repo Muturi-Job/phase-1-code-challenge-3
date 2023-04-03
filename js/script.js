@@ -1,10 +1,13 @@
+//Gets the html elements
 const movieList = document.getElementById('movie-list')
 const movieContainer = document.getElementById('movie-details')
+//Loads the HTML before running the js functions
 document.addEventListener('DOMContentLoaded', () => {
     handleGet();
     movieDetails()
 
 })
+//Fetches the data from the db.json server
 function handleGet() {
     fetch('http://localhost:3000/films')
         .then((res) => {
@@ -14,7 +17,7 @@ function handleGet() {
             createMovieList(data),
            )
 }
-
+//Creates the list of movies on the side panel
 function createMovieList(data) {
     data.forEach((data) => {
         const li = document.createElement('li');
@@ -23,6 +26,7 @@ function createMovieList(data) {
     })
     
 }
+//Fetches the movie details from the server
 function movieDetails (){
     fetch('http://localhost:3000/films')
     .then((res) => {
@@ -32,6 +36,7 @@ function movieDetails (){
         viewMovieDetails(data),
   )
 }
+//Renders the movie details on the DOM
 function viewMovieDetails (data) {
     data.forEach((data) => {
         const movieCard = document.createElement('div');
@@ -48,18 +53,19 @@ function viewMovieDetails (data) {
         const movieShowtime = document.createElement('p');
         movieShowtime.textContent = `Showtime: ${data.showtime}.`
         movieCard.appendChild(movieShowtime);
-        let availableTickets = document.createElement('p')
-        availableTickets.textContent = 'Available Tickets: ' + (parseInt(data.capacity - data.tickets_sold));
-        movieCard.appendChild(availableTickets)
         const buyTicketButton = document.createElement('button');
         buyTicketButton.innerHTML = 'Buy Ticket'; 
-        buyTicketButton.addEventListener('click', () => {
-            availableTickets = availableTickets -1;
-            if (availableTickets == 0 && availableTickets < 0){
-                return 'Tickets Sold Out'
-            }
-        })
-        movieCard.appendChild(buyTicketButton);
+        let availableTickets = document.createElement('p')
         
-})
-}
+            buyTicketButton.addEventListener('click', () => {
+            let tickets = (parseInt(data.capacity - data.tickets_sold));
+            tickets--;  
+            availableTickets.textContent = 'Available Tickets: ' + tickets;                      
+            if (tickets<=0){
+                availableTickets.textContent = "Sold Out"
+                        }
+        movieCard.appendChild(availableTickets)                 
+                    });
+        movieCard.appendChild(buyTicketButton);
+        })  
+    }
